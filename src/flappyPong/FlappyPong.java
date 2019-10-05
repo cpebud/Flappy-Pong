@@ -1,8 +1,8 @@
 /*******************************************************************************
- * File Name:		FlappyPong.java
- * Project:			Flappy Pong Game
+ * File Name:       FlappyPong.java
+ * Project:         Flappy Pong Game
  * 
- * Designer:		Garrett Cross
+ * Designer:        Garrett Cross
  * 
  * Copyright © 2019 Garrett Cross. All rights reserved.
  ******************************************************************************/
