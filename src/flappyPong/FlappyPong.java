@@ -11,51 +11,52 @@ package flappyPong;
 import processing.core.*;
 
 /**
- * <tt>FlappyPong</tt>:
- * A game based on a tutorial by <A HREF="https://www.toptal.com/resume
- * 		/oguz-gelal">Oguz Gelal</A>.
+ * <tt>FlappyPong</tt>: A game based on a tutorial by
+ * <A HREF="https://www.toptal.com/resume /oguz-gelal">Oguz Gelal</A>.
  * <P>
  * Tutorial found <A HREF="https://www.toptal.com/game/
- * 		ultimate-guide-to-processing-simple-game">here</A>.
+ * ultimate-guide-to-processing-simple-game">here</A>.
  * <P>
- * This game was made in Eclipse, and some changes have been made from
- * the original design of the game. This is not an exact duplicate of 
- * the tutorial game.
+ * This game was made in Eclipse, and some changes have been made from the
+ * original design of the game. This is not an exact duplicate of the tutorial
+ * game.
  * 
- * @author  Garrett Cross
- * @version 0.1.0
- * @since   10/04/2019
+ * @author Garrett Cross
+ * @version 0.1.1
+ * @since 10/04/2019
  * 
  */
-public class FlappyPong extends PApplet{
+public class FlappyPong extends PApplet
+{
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         // Creates the Processing.org Applet
         PApplet.main("flappyPong.FlappyPong");
     }
 
     /***************************************************************************
-     *		VARIABLES 
+     * VARIABLES
      **************************************************************************/
 
-    // 	We control which screen is active by settings / updating
-    // 	gameScreen variable. We display the correct screen according
-    // 	to the value of this variable.
+    // We control which screen is active by settings / updating
+    // gameScreen variable. We display the correct screen according
+    // to the value of this variable.
     //
-    //	0: Initial Screen
-    //  1: Game Screen
-    //	2: Game-over Screen
+    // 0: Initial Screen
+    // 1: Game Screen
+    // 2: Game-over Screen
 
     int gameScreen = 0;
 
-    float ballX, ballY;				// ball x-coord and y-coord
-    int ballSize = 20;				// ball size
-    int ballColor = color(0);		// ball color
+    float ballX, ballY;             // ball x-coord and y-coord
+    int ballSize = 20;              // ball size
+    int ballColor = color(0);       // ball color
 
-    float gravity = 1;				// gravity variable
-    float ballSpeedVert = 0;		// ball vertical speed
+    float gravity = 1;              // gravity variable
+    float ballSpeedVert = 0;        // ball vertical speed
 
-    double airFriction = 0.0001;	// friction from ball moving through air
+    double airFriction = 0.0001;    // friction from ball moving through air
     double friction = 0.1;          // friction from ball hitting surface
 
     int racketColor = color(0);     // racket color
@@ -63,7 +64,7 @@ public class FlappyPong extends PApplet{
     float racketHeight = 10;        // racket height
 
     /***************************************************************************
-     * 		SETTINGS BLOCK
+     * SETTINGS BLOCK
      **************************************************************************/
 
     public void settings()
@@ -71,20 +72,18 @@ public class FlappyPong extends PApplet{
         size(500, 500);
     }
 
-
     /***************************************************************************
-     *		SETUP BLOCK
+     * SETUP BLOCK
      **************************************************************************/
 
     public void setup()
     {
-        ballX = width/4;
-        ballY = height/5;
+        ballX = width / 4;
+        ballY = height / 5;
     }
 
-
     /***************************************************************************
-     * 		DRAW BLOCK
+     * DRAW BLOCK
      **************************************************************************/
 
     public void draw()
@@ -93,31 +92,28 @@ public class FlappyPong extends PApplet{
         if (gameScreen == 0)
         {
             initScreen();
-        }
-        else if (gameScreen == 1)
+        } else if (gameScreen == 1)
         {
             gameScreen();
-        }
-        else if (gameScreen == 2)
+        } else if (gameScreen == 2)
         {
             gameOverScreen();
         }
     }
 
-
     /***************************************************************************
-     * 		SCREEN CONTENTS
+     * SCREEN CONTENTS
      **************************************************************************/
 
     public void initScreen()
-    {	// codes of initial screen
+    { // codes of initial screen
         background(0);
         textAlign(CENTER);
-        text("Click anywhere to start", height/2, width/2);
+        text("Click anywhere to start", height / 2, width / 2);
     }
 
     public void gameScreen()
-    {	// codes of game screen
+    { // codes of game screen
         background(255);
 
         drawBall();
@@ -129,13 +125,12 @@ public class FlappyPong extends PApplet{
     }
 
     public void gameOverScreen()
-    {	// codes of game-over screen
+    { // codes of game-over screen
 
     }
 
-
     /***************************************************************************
-     * 		INPUTS
+     * INPUTS
      **************************************************************************/
 
     public void mousePressed()
@@ -147,9 +142,8 @@ public class FlappyPong extends PApplet{
         }
     }
 
-
     /***************************************************************************
-     * 		OTHER FUNCTIONS
+     * OTHER FUNCTIONS
      **************************************************************************/
 
     // Sets the necessary variables to start the game
@@ -176,7 +170,7 @@ public class FlappyPong extends PApplet{
     // Makes ball bounce off of bottom of screen
     public void makeBounceBottom(float surface)
     {
-        ballY = surface - (ballSize/2);
+        ballY = surface - (ballSize / 2);
         ballSpeedVert *= -1;
         ballSpeedVert -= (ballSpeedVert * friction);
     }
@@ -184,7 +178,7 @@ public class FlappyPong extends PApplet{
     // Makes ball bounce off of top of screen
     public void makeBounceTop(float surface)
     {
-        ballY = surface + (ballSize/2);
+        ballY = surface + (ballSize / 2);
         ballSpeedVert *= -1;
         ballSpeedVert -= (ballSpeedVert * friction);
     }
@@ -193,12 +187,12 @@ public class FlappyPong extends PApplet{
     public void keepOnScreen()
     {
         // ball hits floor
-        if (ballY + (ballSize/2) > height)
+        if (ballY + (ballSize / 2) > height)
         {
             makeBounceBottom(height);
         }
 
-        if (ballY - (ballSize/2) < 0)
+        if (ballY - (ballSize / 2) < 0)
         {
             makeBounceTop(0);
         }
@@ -216,10 +210,10 @@ public class FlappyPong extends PApplet{
     public void watchRacketBounce()
     {
         float overhead = mouseY - pmouseY;
-        if ((ballX + (ballSize/2) > mouseX - (racketWidth/2)) 
-                && (ballX - (ballSize/2) < mouseX + (racketWidth/2)))
+        if ((ballX + (ballSize / 2) > mouseX - (racketWidth / 2))
+                && (ballX - (ballSize / 2) < mouseX + (racketWidth / 2)))
         {
-            if (dist(ballX, ballY, ballX, mouseY) <= (ballSize/2) + abs(overhead))
+            if (dist(ballX, ballY, ballX, mouseY) <= (ballSize / 2) + abs(overhead))
             {
                 makeBounceBottom(mouseY);
 
