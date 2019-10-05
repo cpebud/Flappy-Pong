@@ -19,7 +19,7 @@ package flappyPong;
  * the original design of the game. This is not an exact duplicate of 
  * the tutorial game.
  * 
- * @author  Garrett Cross
+ * @author  Garrett Crosss
  * @version 0.0.1
  * @since   10/04/2019
  * 
